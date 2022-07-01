@@ -1,0 +1,10 @@
+{
+  "parser": "bable-eslint",
+  "env": {
+    "es6": true,
+    "brower": true,
+    "node": true
+  },
+  "rules": {},
+  "extends": ["eslint:recommended", "google"]
+}

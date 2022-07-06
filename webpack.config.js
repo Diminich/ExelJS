@@ -12,10 +12,7 @@ const filename = (ext) => isDev ? `bundle.${ext}` : `'bundle.[hash].${ext}`;
 const jsLoader = () => {
     const loaders = [
         {
-            loader: 'babel-loader',
-            options: {
-                presets: ['@babel/preset-env']
-            }
+            loader: 'babel-loader'
         }
     ]
 
@@ -43,8 +40,7 @@ module.exports = {
     },
     devtool: isDev ? 'source-map' : false,
     devServer: {
-        port: 3000,
-        hot: isDev
+        port: 3000
     },
     plugins: [
         new CleanWebpackPlugin(),
@@ -72,22 +68,15 @@ module.exports = {
             {
                 test: /\.s[ac]ss$/i,
                 use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            hmr: isDev,
-                            reloadAll: true
-                        }
-                    },
+                    MiniCssExtractPlugin.loader,
                     'css-loader',
-                    'sass-loader',
+                    'sass-loader'
                 ],
             },
             {
                 test: /\.m?js$/,
                 exclude: /node_modules/,
                 use: jsLoader()
-
             }
         ],
     }

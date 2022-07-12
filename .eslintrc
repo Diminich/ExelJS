@@ -17,7 +17,9 @@
     "semi": "off",
     "no-unused-vars": "off",
     "padded-blocks": "off",
-    "max-len": "off"
+    "max-len": "off",
+    "no-multi-spaces": "off",
+    "no-debugger": "off"
   },
   "extends": ["eslint:recommended", "google"]
 }

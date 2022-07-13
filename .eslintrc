@@ -19,7 +19,8 @@
     "padded-blocks": "off",
     "max-len": "off",
     "no-multi-spaces": "off",
-    "no-debugger": "off"
+    "no-debugger": "off",
+    "spaced-comment": "off"
   },
   "extends": ["eslint:recommended", "google"]
 }

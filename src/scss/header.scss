@@ -7,9 +7,10 @@
   right: 0px;
   left: 0px;
   height: $header-height;
-  padding: 8px 4px 0;
+  padding: 0 4px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   & .input {
     margin: 0;

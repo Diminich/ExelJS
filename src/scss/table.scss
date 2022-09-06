@@ -46,6 +46,7 @@
   }
 
   .cell {
+    position: relative;
     min-width: 40px;
     padding: 5px;
     width: $cell-width;
@@ -71,10 +72,10 @@
     right: 0;
     opacity: 0;
     background: blue;
+    z-index: 1000;
 
     &:hover {
-      opacity: 1;
-      cursor: col-resize;
+      opacity: 1 !important;
     }
   }
 
@@ -84,17 +85,16 @@
     width: 4px;
 
     &:hover {
-      cursor: col-resize;
+      cursor: ew-resize;
     }
   }
 
   .row-resize {
     left: 0;
     height: 4px;
-    background: blue;
 
     &:hover {
-      cursor: col-resize;
-    }
+      cursor: ns-resize;
+    }   
   }
 }

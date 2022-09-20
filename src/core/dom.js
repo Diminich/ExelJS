@@ -12,6 +12,10 @@ class Dom {
         return this.$el.outherHTML.trim();
     }
 
+    text(text) {
+        this.$el.textContent = text
+    }
+
     clear() {
         this.html('');
 

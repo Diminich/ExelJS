@@ -12,7 +12,7 @@ export class Toolbar extends ExcelComponent {
   }
 
   toHTML() {
-    return `
+    return /*html*/`
         <div class="button">
             <span class="material-symbols-outlined"> format_align_left </span>
           </div>

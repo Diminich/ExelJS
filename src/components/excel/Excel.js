@@ -31,4 +31,8 @@ export class Excel {
         this.$el.append(this.getRoor());
         this.components.forEach((component) => component.init());
     }
+
+    destroy() {
+        this.components.forEach((component) => component.destroy());
+    }
 }

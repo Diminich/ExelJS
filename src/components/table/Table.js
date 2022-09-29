@@ -1,5 +1,6 @@
 import { $ } from "../../core/dom";
 import { ExcelComponent } from "../../core/ExcelComponent";
+import * as action from "../../redux/action";
 import { isCell, matrix, nextSelection, shouldResize } from "./table.functions";
 import { resizeHadler } from "./table.resize";
 import { createTable } from "./table.template";
@@ -17,7 +18,7 @@ export class Table extends ExcelComponent {
     }
 
     toHTML() {
-        return createTable(50);
+        return createTable(50, this.store.getState());
     }
 
     prepare() {
@@ -36,9 +37,20 @@ export class Table extends ExcelComponent {
         this.$emit('table: select', $cell);
     }
 
+    async resizeTable(event) {
+        try {
+            const data = await resizeHadler(this.$root, event);
+            console.log('data: ', data);
+            this.$dispatch(action.tableResize(data));
+        } catch (error) {
+            console.warn('Resize error', error.message);
+        }
+
+    }
+
     onMousedown(event) {
         if (shouldResize(event)) {
-            resizeHadler(this.$root, event);
+            this.resizeTable(event);
         } else if (isCell(event)) {
             const $target = $(event.target);
             if (event.shiftKey) {
@@ -46,7 +58,7 @@ export class Table extends ExcelComponent {
                 this.selection.selectGroup($cells);
 
             } else {
-                this.selection.select($target);
+                this.selectCell($target);
             }
         }
     }

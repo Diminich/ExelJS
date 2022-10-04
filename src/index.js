@@ -7,8 +7,9 @@ import { Toolbar } from './components/toolbar/Toolbar';
 import { createStore } from './core/createStore';
 import './scss/index.scss';
 import { storage } from './core/utils';
+import { initialState } from './redux/initilState';
 
-const store = createStore(rootReducer, storage('excel-state'));
+const store = createStore(rootReducer, initialState);
 
 store.subscribe((state) => {
    storage('excel-state', state);

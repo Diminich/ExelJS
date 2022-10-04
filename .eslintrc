@@ -20,7 +20,8 @@
     "max-len": "off",
     "no-multi-spaces": "off",
     "no-debugger": "off",
-    "spaced-comment": "off"
+    "spaced-comment": "off",
+    "one-var": "off"
   },
   "extends": ["eslint:recommended", "google"]
 }

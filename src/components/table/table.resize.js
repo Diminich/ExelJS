@@ -4,7 +4,6 @@ export function resizeHadler($root, event) {
     return new Promise((res) => {
         const $resizer = $(event.target);
         const $parent = $resizer.closest('[data-type="resizable"]');
-        console.log('$parent: ', $parent);
         const coords = $parent.getCoords();
         const type = $resizer.data.resize;
         const sideProp = type === 'col' ? 'bottom' : 'right';
@@ -42,7 +41,8 @@ export function resizeHadler($root, event) {
 
             res({
                 value,
-                id: type === 'col' ? $parent.data.col : $parent.data.row
+                type,
+                id: $parent.data[type]
             })
 
             $resizer.css({

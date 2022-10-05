@@ -16,7 +16,6 @@ export class Header extends ExcelStateComponent {
 
     toHTML() {
         const title = this.store.getState().title;
-        console.log('title: ', title);
         return /*html*/`
         <input type = "text" class="input" value="${title}" />
         <div>

@@ -1,6 +1,7 @@
 import { defaultStyles } from "../../constants";
 import { $ } from "../../core/dom";
 import { ExcelComponent } from "../../core/ExcelComponent";
+import { parse } from "../../core/parse";
 import * as action from "../../redux/action";
 import { isCell, matrix, nextSelection, shouldResize } from "./table.functions";
 import { resizeHadler } from "./table.resize";
@@ -29,8 +30,9 @@ export class Table extends ExcelComponent {
     init() {
         super.init();
         this.selectCell(this.$root.find('[data-id="0:0"]'));
-        this.$on('formula: input', (text) => {
-            this.updateTextInStore(text);
+        this.$on('formula: input', (value) => {
+            this.selection.current.attr('data-value', value).text(parse(value));
+            this.updateTextInStore(value);
         });
         this.$on('formula: done', () => {
             this.selection.current.$el.focus();

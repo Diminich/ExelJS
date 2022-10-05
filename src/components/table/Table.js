@@ -1,3 +1,4 @@
+import { defaultStyles } from "../../constants";
 import { $ } from "../../core/dom";
 import { ExcelComponent } from "../../core/ExcelComponent";
 import * as action from "../../redux/action";
@@ -29,17 +30,26 @@ export class Table extends ExcelComponent {
         super.init();
         this.selectCell(this.$root.find('[data-id="0:0"]'));
         this.$on('formula: input', (text) => {
-            // this.selection.current.text(text);
             this.updateTextInStore(text);
         });
         this.$on('formula: done', () => {
             this.selection.current.$el.focus();
         });
+        this.$on('toolbar: applayStyle', (value) => {
+            this.selection.applyStyle(value);
+            this.$dispatch(action.applayStyle({
+                value,
+                ids: this.selection.selectedIds
+            }))
+        })
     }
 
     selectCell($cell) {
         this.selection.select($cell);
         this.$emit('table: select', $cell);
+        const styles = $cell.getStyles(Object.keys(defaultStyles));
+        // console.log('dispatch style', styles);
+        this.$dispatch(action.changeStyles(styles));
     }
 
     async resizeTable(event) {

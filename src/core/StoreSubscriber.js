@@ -14,12 +14,17 @@ export class StoreSubscriber {
                 if (!isEqual(this.prevState[key], state[key])) {
                     components.forEach((component) => {
                         if (component.isWatching(key)) {
-                            const change = {[key]: state[key]};
+                            const change = { [key]: state[key] };
                             component.storeChanged(change)
                         }
                     })
                 }
             });
+
+            this.prevState = this.store.getState();
+            if (process.env.NODE_ENV === 'development') {
+                window['redux'] = this.prevState;
+            }
         });
     }
 
